@@ -1,0 +1,5 @@
+@charset "UTF-8";
+
+@function rem($size: 16px) {
+  @return #{$size / 16}rem;
+}

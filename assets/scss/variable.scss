@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+@use 'sass:map';
+
+$COLOR: (
+  white: #fff,
+  black: #333,
+  blue: #334bc1
+);
+
+$C_BACK: map.get($COLOR, white);
+$C_TEXT: map.get($COLOR, black);
+$C_ACCENT: map.get($COLOR, blue);

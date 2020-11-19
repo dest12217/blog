@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+@mixin rollover {
+  &:hover,
+  &:focus,
+  &:active {
+    @content;
+  }
+}
+
+@mixin mq {
+  @media only screen and (min-device-width: 769px) {
+    @content;
+  }
+}
+
+@mixin deep {
+  &::v-deep {
+    @content;
+  }
+}

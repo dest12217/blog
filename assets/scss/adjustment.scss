@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+@use '@/assets/scss/common.scss';
+
+.mb {
+  &__s {
+    margin-bottom: 8px !important;
+
+    @include common.mq {
+      margin-bottom: 16px !important;
+    }
+  }
+
+  &__m {
+    margin-bottom: 16px !important;
+
+    @include common.mq {
+      margin-bottom: 24px !important;
+    }
+  }
+
+  &__l {
+    margin-bottom: 24px !important;
+
+    @include common.mq {
+      margin-bottom: 32px !important;
+    }
+  }
+}
