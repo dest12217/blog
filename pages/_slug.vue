@@ -176,12 +176,9 @@ export default Vue.extend({
     cHero: () => import('@/components/CompHero.vue'),
     cTags: () => import('@/components/CompTags.vue')
   },
-  async asyncData ({ $content, params, error }) {
+  async asyncData ({ $content, params, redirect }) {
     const article = await $content('article', params.slug).fetch().catch(() => {
-      error({
-        statusCode: 404,
-        message: 'このページは存在しません'
-      })
+      redirect('/404')
     })
 
     return { article: Array.isArray(article) ? article[0] : article }
