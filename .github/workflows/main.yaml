@@ -19,7 +19,7 @@ jobs:
         run: |
           npm install
           npm run generate
-      - name: 📂 List output files
+      - name: List output files
         run: ls dist/
       - name: FTP-Deploy-Action
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
@@ -30,5 +30,4 @@ jobs:
           local-dir: ./dist/
           server-dir: ./public/blog/
           dangerous-clean-slate: true
-          dry-run: true
 
