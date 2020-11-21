@@ -23,7 +23,7 @@ jobs:
         run: ls dist/
       - name: FTP-Deploy-Action
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
-        env:
+        with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
