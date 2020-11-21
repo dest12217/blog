@@ -1,7 +1,7 @@
 <template lang="pug">
   bMain
     cHero(title="記事一覧")
-      p #[b.hero__label Pickup] #[nuxt-link(to="/blog/20201111") ブログをリニューアルしました]
+      p #[b.hero__label Pickup] #[nuxt-link(to="/20201111") ブログをリニューアルしました]
     cGrid.grid--column2.grid--gap
       cGridItem(v-for="{ slug, title, timestamp, tags } in articles" :key="slug")
         cArticle(:slug="slug" :title="title" :timestamp="timestamp" :tags="tags")
@@ -20,7 +20,7 @@ export default Vue.extend({
     cHero: () => import('@/components/CompHero.vue')
   },
   async asyncData ({ $content }) {
-    const articles = await $content('blog' || 'index').fetch()
+    const articles = await $content('article').fetch()
     let resultArticles: IContentDocument | IContentDocument[]
 
     if (Array.isArray(articles)) {

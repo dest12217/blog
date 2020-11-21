@@ -44,7 +44,7 @@
       .section__content
         nuxtContent(:document="article")
       .section__footer
-        p: cButton(to="/blog/") ブログトップへ戻る
+        p: cButton(to="/") ブログトップへ戻る
 </template>
 
 <style lang="scss" scoped>
@@ -176,8 +176,14 @@ export default Vue.extend({
     cHero: () => import('@/components/CompHero.vue'),
     cTags: () => import('@/components/CompTags.vue')
   },
-  async asyncData ({ $content, params }) {
-    const article = await $content('blog', params.slug || 'index').fetch()
+  async asyncData ({ $content, params, error }) {
+    const article = await $content('article', params.slug).fetch().catch(() => {
+      error({
+        statusCode: 404,
+        message: 'このページは存在しません'
+      })
+    })
+
     return { article: Array.isArray(article) ? article[0] : article }
   },
   data: (): {
@@ -188,7 +194,7 @@ export default Vue.extend({
       return [
         {
           text: this.article?.title,
-          to: `/blog/${this.article?.slug}`
+          to: `${this.article?.slug}`
         }
       ]
     }

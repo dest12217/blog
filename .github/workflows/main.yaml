@@ -1,0 +1,34 @@
+on:
+  push:
+    branches:
+      - master
+    pull_request:
+      - master
+name: Deploy
+jobs:
+  FTP-Deploy-Action:
+    name: 🚀 FTP-Deploy-Action
+    runs-on: macos-latest
+    steps:
+      uses: actions/checkout@master
+      name: Use Node.js 14.5
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.5'
+      name: Run Generate
+        run: |
+          npm install
+          npm run generate
+      name: 📂 List output files
+        run: ls dist/
+      name: FTP-Deploy-Action
+        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        env:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: ./public/blog/
+          dangerous-clean-slate: true
+          dry-run: true
+
