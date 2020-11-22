@@ -6,8 +6,8 @@ on:
       - master
 name: 🚀 Deploy
 jobs:
-  FTP-Deploy-Action:
-    name: FTP-Deploy-Action
+  Deploy:
+    name: Deploy
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@master
