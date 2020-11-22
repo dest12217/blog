@@ -10,7 +10,9 @@ jobs:
     name: Deploy-Github-Pages
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@develop
+      - uses: actions/checkout@v2
+        with:
+          ref: develop
       - name: Use Node.js 14.5
         uses: actions/setup-node@v1
         with:
