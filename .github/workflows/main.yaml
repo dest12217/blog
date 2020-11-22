@@ -4,10 +4,10 @@ on:
       - master
     pull_request:
       - master
-name: Deploy
+name: 🚀 Deploy
 jobs:
   FTP-Deploy-Action:
-    name: 🚀 FTP-Deploy-Action
+    name: FTP-Deploy-Action
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@master

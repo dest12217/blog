@@ -1,0 +1,26 @@
+on:
+  push:
+    branches:
+      - develop
+    pull_request:
+      - develop
+name: 🚀 Deploy Github Pages
+jobs:
+  runs-on: macos-latest
+  steps:
+    - use: actions/checkout@develop
+    - name: Use Node.js 14.5
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.5'
+      - name: Run Generate
+        run: |
+          npm install
+          npm run generate
+      - name: List output files
+        run: ls dist/
+      - name: Actions-Gh-Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
