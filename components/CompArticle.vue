@@ -1,6 +1,6 @@
 <template lang="pug">
   article.article
-    h2.article__title: nuxt-link.article__link(:to="`${slug}`") {{ title }}
+    h2.article__title: nuxt-link.article__link(:to="`/${slug}/`") {{ title }}
     p.article__timestamp {{ timestamp }}
     cTags(:items="tags")
 </template>
