@@ -11,7 +11,7 @@
               href="https://twitter.com/share?ref_src=twsrc%5Etfw"
               data-size="large"
               :data-text="article.title"
-              :data-url="`https://desto.me/blog/${article.slug}`"
+              :data-url="`https://desto.me/blog/${article.slug}/`"
               data-lang="ja"
               data-show-count="false"
             ) ツイート
@@ -176,12 +176,9 @@ export default Vue.extend({
     cHero: () => import('@/components/CompHero.vue'),
     cTags: () => import('@/components/CompTags.vue')
   },
-  async asyncData ({ $content, params, error }) {
+  async asyncData ({ $content, params, redirect }) {
     const article = await $content('article', params.slug).fetch().catch(() => {
-      error({
-        statusCode: 404,
-        message: 'このページは存在しません'
-      })
+      redirect('/404')
     })
 
     return { article: Array.isArray(article) ? article[0] : article }
@@ -204,9 +201,12 @@ export default Vue.extend({
       titleTemplate: `${this.article?.title} - 青色の紙切れ`,
       meta: [
         { hid: 'description', name: 'description', content: `「${this.article?.title}」についての記事です。` },
-        { hid: 'og:url', name: 'og:url', content: `https://desto.me/blog/${this.article?.slug}` },
+        { hid: 'og:url', name: 'og:url', content: `https://desto.me/blog/${this.article?.slug}/` },
         { hid: 'og:description', name: 'og:description', content: `「${this.article?.title}」についての記事です。` },
         { hid: 'og:image', name: 'og:image', content: `${this.$ogp(this.article?.title)}` }
+      ],
+      link: [
+        { rel: 'canonical', href: `https://desto.me/blog/${this.article?.slug}/` }
       ],
       script: [
         { src: 'https://platform.twitter.com/widgets.js', async: true },

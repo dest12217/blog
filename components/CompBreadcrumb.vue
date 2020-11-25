@@ -2,11 +2,10 @@
 nav.breadcrumb
   ul.breadcrumb__inner(itemscope itemtype="https://schema.org/BreadcrumbList")
     li.breadcrumb__item(itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem")
-      nuxt-link.breadcrumb__link(to="/" itemprop="item") ブログトップ
+      nuxt-link.breadcrumb__link(to="/" itemprop="item"): span(itemprop="name") ブログトップ
       meta(itemprop="position" content="1")
     li.breadcrumb__item(itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" v-for="(item, index) in items" :key="item.text")
-      span(v-if="item === items.slice(-1)[0]") {{ item.text }}
-      nuxt-link.breadcrumb__link(:to="item.to" itemprop="item" v-else) {{ item.text }}
+      nuxt-link.breadcrumb__link(:to="item.to" itemprop="item"): span(itemprop="name") {{ item.text }}
       meta(itemprop="position" :content="index + 2")
 </template>
 
