@@ -82,6 +82,12 @@
 
       p {
         margin-bottom: 16px;
+
+        code {
+          background-color: #f5f2f0;
+          display: inline-block;
+          padding: 0 4px;
+        }
       }
 
       a {
@@ -111,6 +117,8 @@
       }
 
       ul {
+        margin-bottom: 16px;
+
         > li {
           padding-left: 20px;
           position: relative;
@@ -125,7 +133,27 @@
             width: 4px;
             height: 4px;
             border-radius: 50%;
-            background-color: #333;
+            background-color: common.$C_TEXT;
+          }
+        }
+      }
+
+      table {
+        border-collapse: collapse;
+        table-layout: fixed;
+        margin-bottom: 16px;
+
+        td,
+        th {
+          border: solid 1px common.$C_BORDER;
+          padding: 4px 8px;
+        }
+
+        thead {
+          td,
+          th {
+            background-color: #f3f3f3;
+            font-weight: bold;
           }
         }
       }
@@ -137,6 +165,13 @@
       @include common.deep {
         h2 {
           font-size: common.rem(30);
+        }
+
+        table {
+          td,
+          th {
+            padding: 8px 16px;
+          }
         }
       }
     }

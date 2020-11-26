@@ -13,6 +13,14 @@
     flex-wrap: wrap;
   }
 
+  // &__item {
+  //   &--only {
+  //     @include common.mq {
+  //       display: flex;
+  //     }
+  //   }
+  // }
+
   &--gap {
     #{$this}__item {
       margin-top: 8px;

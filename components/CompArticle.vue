@@ -13,6 +13,7 @@
   background-color: common.$C_BACK;
   box-shadow: 0 2px 4px rgba(map.get(common.$COLOR, black), 0.2);
   padding: 16px;
+  width: 100%;
 
   > :last-child {
     margin-bottom: 0 !important;
