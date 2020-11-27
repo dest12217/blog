@@ -5,9 +5,11 @@
 $COLOR: (
   white: #fff,
   black: #333,
-  blue: #334bc1
+  blue: #334bc1,
+  gray: #ccc
 );
 
 $C_BACK: map.get($COLOR, white);
+$C_BORDER: map.get($COLOR, gray);
 $C_TEXT: map.get($COLOR, black);
 $C_ACCENT: map.get($COLOR, blue);
