@@ -10,12 +10,11 @@
 
   @include common.mq {
     display: flex;
-    flex-wrap: wrap;
   }
 
   &--gap {
     #{$this}__item {
-      margin-top: 8px;
+      margin-top: 20px;
 
       &:first-child {
         margin-top: 0;
@@ -23,24 +22,45 @@
     }
 
     @include common.mq {
-      margin-right: -4px;
-      margin-left: -4px;
+      margin-right: -10px;
+      margin-left: -10px;
 
       #{$this}__item {
-        padding-right: 4px;
-        padding-left: 4px;
+        padding-right: 10px;
+        padding-left: 10px;
       }
     }
   }
 
   &--column2 {
     @include common.mq {
+      flex-wrap: wrap;
+
       #{$this}__item {
         width: 50%;
 
         &:nth-child(-n+2) {
           margin-top: 0;
         }
+      }
+    }
+  }
+
+  &--split {
+    justify-content: space-between;
+    align-items: center;
+
+    #{$this}__item {
+      margin-top: 20px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    @include common.mq {
+      #{$this}__item {
+        margin-top: 0;
       }
     }
   }

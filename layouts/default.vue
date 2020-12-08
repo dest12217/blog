@@ -1,8 +1,6 @@
 <template lang="pug">
   #page
     Nuxt
-    footer.footer
-      p: small &copy; 2020 desto.me
 </template>
 
 <style lang="scss">
@@ -23,11 +21,5 @@ html {
   font-weight: 400;
   text-size-adjust: 100%;
   overflow-y: scroll;
-}
-
-.footer {
-  font-size: 14px;
-  text-align: center;
-  padding: 8px 0;
 }
 </style>
