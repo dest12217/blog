@@ -19,7 +19,7 @@ export default {
       { hid: 'og:image', name: 'og:image', content: '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/blog/favicon.ico' }
     ]
   },
 

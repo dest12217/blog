@@ -2,6 +2,12 @@
 
 @use '@/assets/scss/common.scss';
 
+.ta {
+  &__c {
+    text-align: center !important;
+  }
+}
+
 .mb {
   &__s {
     margin-bottom: 8px !important;

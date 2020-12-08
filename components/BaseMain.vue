@@ -6,16 +6,17 @@
 @use '@/assets/scss/common.scss';
 
 .main {
+  background-color: #f3f3f3;
   color: common.$C_TEXT;
   padding: 0 16px;
 
   &__inner {
-    max-width: 850px;
+    max-width: 920px;
     margin: 0 auto;
-    padding-bottom: 32px;
+    padding: 32px 0;
 
     @include common.mq {
-      padding-bottom: 48px;
+      padding: 64px 0;
     }
   }
 }

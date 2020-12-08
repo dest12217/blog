@@ -2,6 +2,7 @@
   article.article
     h2.article__title: nuxt-link.article__link(:to="`/${slug}/`") {{ title }}
     p.article__timestamp {{ timestamp }}
+    p.article__text {{ text }}…
     cTags(:items="tags")
 </template>
 
@@ -47,6 +48,11 @@
     font-size: common.rem(14);
     margin-bottom: 8px;
   }
+
+  &__text {
+    font-size: common.rem(14);
+    margin-bottom: 16px;
+  }
 }
 </style>
 
@@ -77,7 +83,11 @@ export default Vue.extend({
       type: Array,
       default: () => [],
       required: true
-    } as PropOptions<string[]>
+    } as PropOptions<string[]>,
+    text: {
+      type: String,
+      default: ''
+    }
   }
 })
 </script>

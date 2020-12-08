@@ -1,50 +1,19 @@
 <template lang="pug">
-  bMain
-    cHero(:title="article.title")
-      .hero__detail--blog
-        .hero__detail-row
-          p {{ article.timestamp }}
-          cTags(:items="article.tags")
-        .hero__detail-row
-          cListShare
-            li: a.twitter-share-button(
-              href="https://twitter.com/share?ref_src=twsrc%5Etfw"
-              data-size="large"
-              :data-text="article.title"
-              :data-url="`https://desto.me/blog/${article.slug}/`"
-              data-lang="ja"
-              data-show-count="false"
-            ) ツイート
-            li: iframe(
-              src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&layout=button&size=large&width=79&height=28&appId"
-              width="79"
-              height="28"
-              style="border:none; overflow:hidden;"
-              scrolling="no"
-              frameborder="0"
-              allowfullscreen="true"
-              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-            )
-            li: a.hatena-bookmark-button(
-              href="https://b.hatena.ne.jp/entry/"
-              data-hatena-bookmark-layout="basic-label"
-              data-hatena-bookmark-lang="ja"
-              data-hatena-bookmark-height="28"
-              title="このエントリーをはてなブックマークに追加"
-            ): img(
-              src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png"
-              alt="このエントリーをはてなブックマークに追加"
-              width="20"
-              height="20"
-              style="border: none;"
-            )
-    section.section
-      .section__header
-        cBreadcrumb(:items="breadcrumb")
-      .section__content
-        nuxtContent(:document="article")
-      .section__footer
-        p: cButton(to="/") ブログトップへ戻る
+  .wrap
+    bHeader
+      h1.header__title {{ article.title }}
+      cTags(:items="article.tags")
+    bMain
+      section.section
+        .section__header
+          cBreadcrumb(:items="breadcrumb")
+        .section__content
+          nuxtContent(:document="article")
+        .section__footer
+          cGrid.grid--split
+            cGridItem: p: cButton(to="/") ブログトップへ戻る
+            cGridItem: cListShare(:twitter="true", :facebook="true", :hatena="true", :url="`https://desto.me/blog/${article.slug}/`")
+    bFooter
 </template>
 
 <style lang="scss" scoped>
@@ -185,17 +154,6 @@
     }
   }
 }
-
-.hero__detail-row {
-  .tags {
-    margin-bottom: 0;
-    margin-left: 16px;
-
-    @include common.mq {
-      margin-left: 24px;
-    }
-  }
-}
 </style>
 
 <script lang="ts">
@@ -204,11 +162,14 @@ import { IContentDocument } from '@nuxt/content/types/content'
 
 export default Vue.extend({
   components: {
+    bFooter: () => import('@/components/BaseFooter.vue'),
+    bHeader: () => import('@/components/BaseHeader.vue'),
     bMain: () => import('@/components/BaseMain.vue'),
     cButton: () => import('@/components/CompButton.vue'),
     cBreadcrumb: () => import('@/components/CompBreadcrumb.vue'),
+    cGrid: () => import('@/components/CompGrid.vue'),
+    cGridItem: () => import('@/components/CompGridItem.vue'),
     cListShare: () => import('@/components/CompList--share.vue'),
-    cHero: () => import('@/components/CompHero.vue'),
     cTags: () => import('@/components/CompTags.vue')
   },
   async asyncData ({ $content, params, redirect }) {
