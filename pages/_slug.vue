@@ -12,7 +12,7 @@
         .section__footer
           cGrid.grid--split
             cGridItem: p: cButton(to="/") ブログトップへ戻る
-            cGridItem: cListShare(:twitter="true", :facebook="true", :hatena="true", :url="`https://desto.me/blog/${article.slug}/`")
+            cGridItem: cListShare(:twitter="true", :facebook="true", :hatena="true", :url="`https://www.desto.me/blog/${article.slug}/`")
     bFooter
 </template>
 
@@ -196,13 +196,14 @@ export default Vue.extend({
     return {
       titleTemplate: `${this.article?.title} - 青色の紙切れ`,
       meta: [
-        { hid: 'description', name: 'description', content: `「${this.article?.title}」についての記事です。` },
-        { hid: 'og:url', name: 'og:url', content: `https://desto.me/blog/${this.article?.slug}/` },
-        { hid: 'og:description', name: 'og:description', content: `「${this.article?.title}」についての記事です。` },
-        { hid: 'og:image', name: 'og:image', content: `${this.$ogp(this.article?.title)}` }
+        { hid: 'description', name: 'description', content: `「${this.article?.title}」についての記事です。青色の紙切れはHTML/CSS/JavaScriptなどフロントエンド技術を中心としたテックブログです。` },
+        { hid: 'og:title', name: 'og:title', content: `${this.article?.title} - 青色の紙切れ` },
+        { hid: 'og:type', name: 'og:type', content: 'article' },
+        { hid: 'og:url', name: 'og:url', content: `https://www.desto.me/blog/${this.article?.slug}/` },
+        { hid: 'og:description', name: 'og:description', content: `「${this.article?.title}」についての記事です。青色の紙切れはHTML/CSS/JavaScriptなどフロントエンド技術を中心としたテックブログです。` }
       ],
       link: [
-        { rel: 'canonical', href: `https://desto.me/blog/${this.article?.slug}/` }
+        { rel: 'canonical', href: `https://www.desto.me/blog/${this.article?.slug}/` }
       ],
       script: [
         { src: 'https://platform.twitter.com/widgets.js', async: true },
