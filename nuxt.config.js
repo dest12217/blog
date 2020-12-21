@@ -1,3 +1,5 @@
+import highlightjs from 'highlight.js'
+
 export default {
   target: 'static',
   // Global page headers (https://go.nuxtjs.dev/config-head)
@@ -25,6 +27,7 @@ export default {
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
+    'highlight.js/styles/tomorrow-night.css'
   ],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
@@ -63,5 +66,15 @@ export default {
 
   router: {
     base: '/blog/'
+  },
+
+  content: {
+    markdown: {
+      highlighter (rawCode, lang) {
+        const code = (lang ? highlightjs.highlight(lang, rawCode) : highlightjs.highlightAuto(rawCode)).value
+
+        return `<pre><code class="hljs ${lang}">${code}</code></pre>`
+      }
+    }
   }
 }
