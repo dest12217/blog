@@ -15,7 +15,8 @@
   "dependencies": {
     "@nuxt/content": "^1.10.0",
     "@nuxt/typescript-runtime": "^2.0.0",
-    "@nuxtjs/google-tag-manager": "^2.3.2",
+    "@nuxtjs/gtm": "^2.4.0",
+    "@nuxtjs/sitemap": "^2.4.0",
     "canvas": "^2.6.1",
     "core-js": "^3.6.5",
     "highlight.js": "^10.4.1",

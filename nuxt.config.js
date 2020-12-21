@@ -1,7 +1,9 @@
 import highlightjs from 'highlight.js'
 
 export default {
+  // The target Property (https://go.nuxtjs.dev/config-target)
   target: 'static',
+
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     htmlAttrs: {
@@ -12,16 +14,17 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: '青色の紙切れはHTML/CSS/JavaScriptなどフロントエンド技術を中心としたテックブログです。' },
       { hid: 'og:site_name', name: 'og:site_name', content: '青色の紙切れ' },
-      { hid: 'og:type', name: 'og:type', content: 'article' },
-      { hid: 'og:url', name: 'og:url', content: 'https://desto.me' },
+      { hid: 'og:type', name: 'og:type', content: 'website' },
+      { hid: 'og:url', name: 'og:url', content: 'https://www.desto.me/blog/' },
       { hid: 'og:title', name: 'og:title', content: '青色の紙切れ' },
-      { hid: 'og:description', name: 'og:description', content: '' },
-      { hid: 'og:image', name: 'og:image', content: '' }
+      { hid: 'og:description', name: 'og:description', content: '青色の紙切れはHTML/CSS/JavaScriptなどフロントエンド技術を中心としたテックブログです。' },
+      { hid: 'og:image', name: 'og:image', content: 'https://www.desto.me/blog/ogp.png' },
+      { hid: 'twitter:card', content: 'summary_large_image' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/blog/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: 'https://www.desto.me/blog/favicon.ico' }
     ]
   },
 
@@ -50,7 +53,10 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
-    ['@nuxtjs/google-tag-manager', { id: 'GTM-KFFH22H' }]
+    // https://sitemap.nuxtjs.org/
+    '@nuxtjs/sitemap',
+    // https://github.com/nuxt-community/gtm-module
+    '@nuxtjs/gtm'
   ],
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
@@ -64,10 +70,34 @@ export default {
     }
   },
 
+  // The router Property
   router: {
     base: '/blog/'
   },
 
+  // Google Tag Manager Module for Nuxt.js
+  gtm: {
+    id: 'GTM-KFFH22H'
+  },
+
+  // Build sitemap.xml
+  sitemap: {
+    path: '/sitemap.xml',
+    hostname: 'https://www.desto.me',
+    routes: async () => {
+      const routes = []
+      const { $content } = require('@nuxt/content')
+      const posts = await $content('article').fetch()
+
+      for (const post of posts) {
+        routes.push(`${post.slug}`)
+      }
+
+      return routes
+    }
+  },
+
+  // Build Content
   content: {
     markdown: {
       highlighter (rawCode, lang) {
