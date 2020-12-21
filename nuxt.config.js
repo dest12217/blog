@@ -1,3 +1,5 @@
+import highlightjs from 'highlight.js'
+
 export default {
   // The target Property (https://go.nuxtjs.dev/config-target)
   target: 'static',
@@ -28,6 +30,7 @@ export default {
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
+    'highlight.js/styles/tomorrow-night.css'
   ],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
@@ -87,10 +90,21 @@ export default {
       const posts = await $content('article').fetch()
 
       for (const post of posts) {
-        routes.push(`${post.slug}/`)
+        routes.push(`${post.slug}`)
       }
 
       return routes
+    }
+  },
+
+  // Build Content
+  content: {
+    markdown: {
+      highlighter (rawCode, lang) {
+        const code = (lang ? highlightjs.highlight(lang, rawCode) : highlightjs.highlightAuto(rawCode)).value
+
+        return `<pre><code class="hljs ${lang}">${code}</code></pre>`
+      }
     }
   }
 }
