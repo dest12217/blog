@@ -1,5 +1,7 @@
 export default {
+  // The target Property (https://go.nuxtjs.dev/config-target)
   target: 'static',
+
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     htmlAttrs: {
@@ -48,7 +50,10 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
-    ['@nuxtjs/google-tag-manager', { id: 'GTM-KFFH22H' }]
+    // https://sitemap.nuxtjs.org/
+    '@nuxtjs/sitemap',
+    // https://github.com/nuxt-community/gtm-module
+    '@nuxtjs/gtm'
   ],
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
@@ -62,7 +67,30 @@ export default {
     }
   },
 
+  // The router Property
   router: {
     base: '/blog/'
+  },
+
+  // Google Tag Manager Module for Nuxt.js
+  gtm: {
+    id: 'GTM-KFFH22H'
+  },
+
+  // Build sitemap.xml
+  sitemap: {
+    path: '/sitemap.xml',
+    hostname: 'https://www.desto.me',
+    routes: async () => {
+      const routes = []
+      const { $content } = require('@nuxt/content')
+      const posts = await $content('article').fetch()
+
+      for (const post of posts) {
+        routes.push(`${post.slug}/`)
+      }
+
+      return routes
+    }
   }
 }
