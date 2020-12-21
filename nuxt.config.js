@@ -1,5 +1,9 @@
+import highlightjs from 'highlight.js'
+
 export default {
+  // The target Property (https://go.nuxtjs.dev/config-target)
   target: 'static',
+
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     htmlAttrs: {
@@ -26,6 +30,7 @@ export default {
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
+    'highlight.js/styles/tomorrow-night.css'
   ],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
@@ -48,7 +53,10 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
-    ['@nuxtjs/google-tag-manager', { id: 'GTM-KFFH22H' }]
+    // https://sitemap.nuxtjs.org/
+    '@nuxtjs/sitemap',
+    // https://github.com/nuxt-community/gtm-module
+    '@nuxtjs/gtm'
   ],
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
@@ -62,7 +70,41 @@ export default {
     }
   },
 
+  // The router Property
   router: {
     base: '/blog/'
+  },
+
+  // Google Tag Manager Module for Nuxt.js
+  gtm: {
+    id: 'GTM-KFFH22H'
+  },
+
+  // Build sitemap.xml
+  sitemap: {
+    path: '/sitemap.xml',
+    hostname: 'https://www.desto.me',
+    routes: async () => {
+      const routes = []
+      const { $content } = require('@nuxt/content')
+      const posts = await $content('article').fetch()
+
+      for (const post of posts) {
+        routes.push(`${post.slug}`)
+      }
+
+      return routes
+    }
+  },
+
+  // Build Content
+  content: {
+    markdown: {
+      highlighter (rawCode, lang) {
+        const code = (lang ? highlightjs.highlight(lang, rawCode) : highlightjs.highlightAuto(rawCode)).value
+
+        return `<pre><code class="hljs ${lang}">${code}</code></pre>`
+      }
+    }
   }
 }
