@@ -2,7 +2,7 @@
   .wrap
     bHeader
       h1.header__title 記事一覧
-      p #[b.header__label Pickup] #[nuxt-link(to="/20201111/") ブログをリニューアルしました]
+      p #[b.header__label Pickup] #[nuxt-link(to="/20201225/") JavaScript Advent Calendar 2020 に参加しました]
     bMain
       cGrid.grid--column2.grid--gap
         cGridItem.grid__item--only(v-for="{ slug, title, timestamp, tags, text } in articles" :key="slug")
